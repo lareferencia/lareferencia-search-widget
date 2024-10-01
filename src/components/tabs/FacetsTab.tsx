@@ -1,7 +1,26 @@
 import { Box, List, ListItem, TabPanel, Text } from "@chakra-ui/react";
 import { PieChart } from "./charts/PieChart";
+import { getApi } from "../../api/api";
+import { useEffect } from "react";
 
 export const FacetsTab = () => {
+
+
+  const fetchData = async () => {
+    try {
+      const resp = await getApi();
+      console.log(resp);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  
+
+
   return (
     <TabPanel p="0" display="flex">
 

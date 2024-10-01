@@ -1,21 +1,9 @@
 import { Box, Tab, TabList, TabPanels, Tabs } from "@chakra-ui/react";
-import { getApi } from "../../api/api";
-import { useEffect } from "react";
 import { GeneralData } from "./GeneralData";
 import { FacetsTab } from "./FacetsTab";
 
 export const TabsContainer = () => {
-  const fetchData = async () => {
-    try {
-      const resp = await getApi();
-      console.log(resp);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
+
 
   return (
     <>
