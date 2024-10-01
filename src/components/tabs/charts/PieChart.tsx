@@ -2,7 +2,12 @@ import { Box } from "@chakra-ui/react";
 import * as echarts from "echarts";
 import { useEffect, useRef } from "react";
 
-export const PieChart = () => {
+//interface for data coming as props
+interface PieChartProps {
+  data: { value: number; name: string }[];
+}
+
+export const PieChart : React.FC<PieChartProps> = ({ data }) => {
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,11 +32,7 @@ export const PieChart = () => {
             labelLine: {
               show: false,
             },
-            data: [
-              { value: 1048, name: "Articulos" },
-              { value: 735, name: "Tesis" },
-              { value: 580, name: "Reportes" },
-            ],
+            data: data,
 
             itemStyle: {
               color: "#68B9B7",
@@ -47,7 +48,7 @@ export const PieChart = () => {
 
       option && myChart.setOption(option);
     }
-  }, []);
+  }, [data]);
 
   return (
     <Box height="100%">
