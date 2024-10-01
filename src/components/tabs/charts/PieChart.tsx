@@ -32,6 +32,15 @@ export const PieChart = () => {
               { value: 735, name: "Tesis" },
               { value: 580, name: "Reportes" },
             ],
+
+            itemStyle: {
+              color: "#68B9B7",
+              shadowBlur: 300,
+              shadowColor: "rgba(0, 0, 0, 0.5)",
+            },
+
+            animationType: "scale",
+            animationEasing: "elasticOut",
           },
         ],
       };
@@ -41,8 +50,8 @@ export const PieChart = () => {
   }, []);
 
   return (
-    <Box height='100%'>
+    <Box height="100%">
       <Box id="pie-chart" ref={chartRef} height="100%"></Box>
     </Box>
-  )
+  );
 };
