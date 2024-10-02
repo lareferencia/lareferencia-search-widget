@@ -10,6 +10,7 @@ interface PieChartProps {
 export const PieChart : React.FC<PieChartProps> = ({ data }) => {
   const chartRef = useRef<HTMLDivElement>(null);
 
+  
   useEffect(() => {
     const myChart = echarts.init(chartRef.current);
 
@@ -23,7 +24,7 @@ export const PieChart : React.FC<PieChartProps> = ({ data }) => {
             name: "Access From",
             type: "pie",
             selectedMode: "single",
-            radius: ["0%", "85%"],
+            radius: ["0%", "90%"],
             label: {
               position: "inner",
               fontSize: 14,
@@ -36,7 +37,7 @@ export const PieChart : React.FC<PieChartProps> = ({ data }) => {
 
             itemStyle: {
               color: "#68B9B7",
-              shadowBlur: 300,
+              shadowBlur: 5,
               shadowColor: "rgba(0, 0, 0, 0.5)",
             },
 
