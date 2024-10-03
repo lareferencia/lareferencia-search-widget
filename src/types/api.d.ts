@@ -1,5 +1,5 @@
 
-type Format = {
+export type Format = {
     value:      string;
     translated: string;
     count:      number;

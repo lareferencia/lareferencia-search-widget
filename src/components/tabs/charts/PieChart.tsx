@@ -1,10 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import * as echarts from "echarts";
 import { useEffect, useRef } from "react";
+import {Format} from '../../../types/api';
 
 //interface for data coming as props
 interface PieChartProps {
-  data: { value: number; name: string }[];
+  data: Format[];
 }
 
 export const PieChart : React.FC<PieChartProps> = ({ data }) => {
@@ -13,6 +14,9 @@ export const PieChart : React.FC<PieChartProps> = ({ data }) => {
   
   useEffect(() => {
     const myChart = echarts.init(chartRef.current);
+
+    // clean Format
+    const formatClean = data.map(item => ({ value: item.count, name: item.translated }))
 
     if (chartRef.current) {
       const option = {
@@ -33,7 +37,7 @@ export const PieChart : React.FC<PieChartProps> = ({ data }) => {
             labelLine: {
               show: false,
             },
-            data: data,
+            data: formatClean,
 
             itemStyle: {
               color: "#68B9B7",
