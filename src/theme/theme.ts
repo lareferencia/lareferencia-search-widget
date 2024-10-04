@@ -15,6 +15,7 @@ const brandPrimary = defineStyle({
         color: 'orange.800',
     }
 })
+
 const brandSecondary = defineStyle({
     color: 'gray.700',
     fontWeight: 'semibold',
@@ -76,5 +77,8 @@ const tabsTheme = defineMultiStyleConfig({ baseStyle, variants })
 
 export const theme = extendTheme({
     components: { Button: buttonTheme, Tabs: tabsTheme },
+    fonts:{
+      body: `'Titillium-Web', sans-serif`,
+    }
 })
 

@@ -1,73 +1,73 @@
-import { Box, List, ListItem, TabPanel, Text } from "@chakra-ui/react";
+import { Box, List, TabPanel, Skeleton, SkeletonCircle, ListItem, Text } from "@chakra-ui/react";
 import { PieChart } from "./charts/PieChart";
-// import { BarChart } from "./charts/BarChart";
 import { getApi } from "../../api/api";
 import { useState, useEffect } from "react";
 import { ApiResponse } from "../../types/api";
+import { ListItemComponent } from "../ListItemComponent";
+import { ListItemSkeleton } from "../ListItemSkeleton";
 
 export const FacetsTab = () => {
-
-  // data from api will be stored here
   const [data, setData] = useState<ApiResponse | null>(null);
 
-  const fetchData = async () => {
-    try {
-      const resp = await getApi();
-      // set data to state
-      setData(resp);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resp = await getApi();
+        setData(resp);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     fetchData();
   }, []);
-
-
   
-  //TODO: Ignore this fn, will be deleted when we implement localization for translations
-  const capitalizeFirstLetter = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  //get format from data
+  const getFormatFromData = (data: ApiResponse) => data.facets.format;
+
+  const renderList = () => {
+    return data ?
+      getFormatFromData(data).map((item, index) => (
+        <ListItemComponent item={item} index={index} />
+      ))
+      : renderListSkeleton();
   };
+
+  //List skeleton
+  const renderListSkeleton = () => {
+    return (
+      //iterate 8 times to simulate a list
+      Array.from({ length: 8 }).map(() => (
+        <ListItemSkeleton />
+      ))
+    )
+  }
+
+  const renderChart = () => {
+    return data ?
+      <PieChart data={getFormatFromData(data)} />
+      : renderPieSkeleton();
+  };
+
+  //chart skeleton
+  const renderPieSkeleton = () => {
+    return (
+      <div style={{ display: "flex", height: "100%", alignItems: "center", justifyContent: 'center', padding: "5px" }}>
+        <SkeletonCircle size='200' />
+      </div>
+    );
+  }
 
 
   return (
     <TabPanel p="0" display="flex">
-
-    <Box bgColor="#7FC7BD" w="65%" p="6" h='auto' display='flex' alignItems='center'>
-      <List 
-        listStyleType='-'
-        display='flex' 
-        flexWrap='wrap' 
-        gap='4'
-        flexDirection='row'
-        p={2}
-      >
-        {data && data?.facets?.format?.map((item, index) => (
-          <ListItem 
-            key={index} 
-            flex='0 0 45%'
-            maxW='50%'
-            sx={{
-              '::marker': {
-                color: '#b4e2dc', 
-              }
-            }}
-          >
-            <Text as="span" fontSize="xl" fontWeight="semibold" color="white">
-            {capitalizeFirstLetter(item.translated)} - {item.count.toLocaleString()}
-            </Text>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-
-      <Box bgColor="#b4e2dc" w="35%" h='250px'>
-      <PieChart data={(data?.facets?.format?.map(item =>({value:item.count, name:item.translated})) || [])} />
-      {/*<BarChart data={(data?.facets?.format?.map(item =>({value:item.count, name:item.translated})) || [])} />*/}
+      <Box bgColor="#7FC7BD" w="65%" p="6" h='auto' display='flex' alignItems='center'>
+        <List listStyleType='-' display='flex' flexWrap='wrap' gap='4' flexDirection='row' p={2}>
+          {renderList()}
+        </List>
       </Box>
-
+      <Box bgColor="#b4e2dc" w="35%" h='250px'>
+        {renderChart()}
+      </Box>
     </TabPanel>
   );
 };
