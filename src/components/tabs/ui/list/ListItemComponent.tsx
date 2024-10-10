@@ -1,5 +1,5 @@
 import { ListItem, Text } from '@chakra-ui/react';
-import { Format } from '../types/api';
+import { Format } from '../../../../types/api';
 
 //TODO: Ignore this fn, will be deleted when we implement localization for translations
 const capitalizeFirstLetter = (string: string) => {
