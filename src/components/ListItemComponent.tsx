@@ -1,4 +1,4 @@
-import { ListItem, Text, Skeleton } from '@chakra-ui/react';
+import { ListItem, Text } from '@chakra-ui/react';
 import { Format } from '../types/api';
 
 //TODO: Ignore this fn, will be deleted when we implement localization for translations
@@ -7,11 +7,10 @@ const capitalizeFirstLetter = (string: string) => {
 };
 
 
-export const ListItemComponent = ({ item, index }: { item: Format, index: number }) => {
+export const ListItemComponent = ({ item }: { item: Format }) => {
 
     return (
         <ListItem
-            key={index}
             flex='0 0 45%'
             maxW='50%'
             sx={{
@@ -21,7 +20,7 @@ export const ListItemComponent = ({ item, index }: { item: Format, index: number
             }}
         >
 
-            <Text as="span" fontSize="xl" fontWeight="semibold" color="white">
+            <Text as="span" fontSize="lg" fontWeight="semibold" color="white">
                 {capitalizeFirstLetter(item.translated)} - {item.count.toLocaleString()}
             </Text>
 

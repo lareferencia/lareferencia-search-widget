@@ -1,6 +1,12 @@
 import { Box, Divider, Text } from '@chakra-ui/react'
 
-export const GeneralData = () => {
+type Props = {
+  results: number;
+}
+
+export const GeneralData = ({ results }:Props ) => {
+
+  
   return (
     <Box bgColor="#68b9b7" w="33.33%" py="10" borderTopLeftRadius={8} borderBottomLeftRadius={8} display="flex" justifyContent="center" alignItems="center" flexDir="column" >
       <Box>
@@ -11,7 +17,8 @@ export const GeneralData = () => {
       <Divider my="3" w="50%" />
       <Box>
         <Text as="span" fontSize="3xl" fontWeight="semibold" color="white">
-          <b>5.016.521</b> - Documentos
+          <b>5.016.521</b> - Documentos 
+          {/* Show resultsCounts */}
         </Text>
       </Box>
     </Box>

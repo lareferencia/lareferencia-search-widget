@@ -5,12 +5,18 @@ import { FacetsTab } from "./FacetsTab";
 export const TabsContainer = () => {
 
 
+  // API response
+
+
+
+
   return (
     <>
       {/* PANELS */}
       <Box display="flex">
         {/* General data */}
-        <GeneralData />
+
+        <GeneralData results={ results } />
 
         <Box bgColor="#7FC7BD" w="66.66%">
           <Tabs variant="colorful">
@@ -22,7 +28,7 @@ export const TabsContainer = () => {
             <TabPanels>
               
               {/* Facet tab */}
-              <FacetsTab />
+              <FacetsTab format={format}/>
 
             </TabPanels>
           </Tabs>

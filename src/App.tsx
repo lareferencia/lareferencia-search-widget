@@ -13,8 +13,11 @@ function App() {
       justifyContent="center"
       gap="2"
     >
+
       <SearchContainer />
+      
       <TabsContainer />
+
     </Box>
   );
 }
