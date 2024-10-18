@@ -1,14 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import * as echarts from "echarts";
 import { useEffect, useRef } from "react";
-import {Format} from '../../../types/api';
 
 //interface for data coming as props
 interface PieChartProps {
-  data: Format[];
+  data: any;
 }
 
 export const PieChart : React.FC<PieChartProps> = ({ data }) => {
+  
+  
   const chartRef = useRef<HTMLDivElement>(null);
 
   
@@ -21,34 +22,53 @@ export const PieChart : React.FC<PieChartProps> = ({ data }) => {
     if (chartRef.current) {
       const option = {
         tooltip: {
-          trigger: "item",
+          show: false,
         },
+        legend: {
+          show: false,
+        },
+        color: ['#365F5F', '#4E8B89', '#76BFBE', '#8DCAC9' , '#A0D3D2' ], // Gama de colores personalizada
+
         series: [
           {
-            name: "Access From",
-            type: "pie",
-            selectedMode: "single",
-            radius: ["0%", "90%"],
-            label: {
-              position: "inner",
-              fontSize: 14,
-              fontWeight: "bold",
-            },
-            labelLine: {
-              show: false,
-            },
-            data: formatClean,
+            name: 'Access From',
+            type: 'pie',
+            radius: ['55%', '90%'],
+
+            avoidLabelOverlap: false,
+            padAngle: 1,
 
             itemStyle: {
-              color: "#68B9B7",
-              shadowBlur: 5,
-              shadowColor: "rgba(0, 0, 0, 0.5)",
+              borderRadius: 10
             },
-
-            animationType: "scale",
-            animationEasing: "elasticOut",
-          },
-        ],
+            label: {
+              show: true,
+              position: 'center',
+              color: 'black',
+              fontSize: 14,
+              fontWeight: 'bold',
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: 14,
+                fontWeight: 'bold',
+                color: 'black',
+                backgroundColor: '#7FC7BD',
+                padding: 6,
+                borderRadius: 8,
+                formatter: function(params: any) {
+                  const percentage = params.percent;
+                  return `${params.name}\n\n(${percentage}%)`;
+                }
+              }
+            },
+            labelLine: {
+              show: false
+            },
+            data: formatClean
+          }
+        ]
       };
 
       option && myChart.setOption(option);
