@@ -1,14 +1,15 @@
-import { background, Box, Show } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import * as echarts from "echarts";
 import { useEffect, useRef } from "react";
-import {Format} from '../../../types/api';
 
 //interface for data coming as props
 interface PieChartProps {
-  data: Format[];
+  data: any;
 }
 
 export const PieChart : React.FC<PieChartProps> = ({ data }) => {
+  
+  
   const chartRef = useRef<HTMLDivElement>(null);
 
   

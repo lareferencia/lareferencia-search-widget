@@ -1,17 +1,17 @@
 
 export type Format = {
-    value:      string;
+    value: string;
     translated: string;
-    count:      number;
-    href:       string;
+    count: number;
+    href: string;
 }
 
 type Facet = {
     format: Format[];
-  };
-  
- export type ApiResponse = {
+};
+
+export type ApiResponse = {
     facets: Facet;
     resultCount: number;
     status: string;
-  };
+};

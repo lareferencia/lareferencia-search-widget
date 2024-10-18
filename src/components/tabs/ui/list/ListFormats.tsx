@@ -1,19 +1,28 @@
-import { List } from "@chakra-ui/react";
-import { Format } from "../../../../types/api";
+import { List, SimpleGrid } from "@chakra-ui/react";
+import { Format } from "../../../../interfaces/api";
 import { ListItemComponent } from "./ListItemComponent";
 import { ListLoading } from "./ListLoading";
+
 type Props = {
-  format: Format[] | undefined;
-}
+  format: any;
+};
+
+
 export const ListFormats = ({ format }: Props) => {
+
+  const columns = format ? Math.ceil(format.length / 4) : 1; // Calcula las columnas necesarias.
+
   return (
-    <List listStyleType="-" display="flex" flexWrap="wrap" gap="4" flexDirection="row" p={2}>
+    <SimpleGrid as='ul'
+    columns={columns} spacing={2}
+    >
       {format ? (
         format.map((item) => (
-            <ListItemComponent item={item} key={item.translated} />))
-          ) : ( 
-          <ListLoading />
-          )}
-    </List>
-  )
-}
+          <ListItemComponent item={ item } key={ item.translated } />
+        ))
+      ) : (
+        <ListLoading />
+      )}
+    </SimpleGrid>
+  );
+};

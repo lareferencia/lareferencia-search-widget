@@ -1,46 +1,52 @@
 import { Box, Tab, TabList, TabPanels, Tabs } from "@chakra-ui/react";
 import { GeneralData } from "./GeneralData";
-import { FacetsTab } from "./FacetsTab";
-import { getApi } from "../../api/api";
-import { useEffect, useState } from "react";
-import { ApiResponse } from "../../types/api";
+import { FormatTab } from "./FormatTab";
+import { LanguageTab } from "./LanguageTab";
+import { CountryTab } from "./CountryTab";
+import { PieLoading } from "./ui/PieLoading";
+import { PieChart } from "./charts/PieChart";
+import { useState } from "react";
 
 export const TabsContainer = () => {
   // hook for api response
-  const [data, setData] = useState<ApiResponse>();
-
-  useEffect(() => {
-    // API response
-    const fetchData = async () => {
-      try {
-        const resp = await getApi();
-        setData(resp);
-        console.log(resp);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const [pieChartData, setPieChartData] = useState()
 
   return (
     <>
       {/* PANELS */}
       <Box display="flex">
         {/* General data */}
-        <GeneralData results={ data?.resultCount } />
+        <GeneralData/>
+
         <Box bgColor="#7FC7BD" w="66.66%">
+
           <Tabs variant="colorful">
             <TabList>
-              <Tab>Facets</Tab>
-              <Tab>Otra tab</Tab>
+              <Tab>Tipo de documento</Tab>
+              <Tab>Paìs</Tab>
+              <Tab>Idioma</Tab>
             </TabList>
 
-            <TabPanels>
-              {/* Facet tab */}
-              <FacetsTab format={data?.facets.format}/>
+            <TabPanels onChange={() => console.log(e)}>
+              {/* Format tab */}
+              <FormatTab setPieChartData={setPieChartData} />
+
+              {/* Country tab */}
+              <CountryTab setPieChartData={setPieChartData}/>
+
+              {/* Language tab */}
+              <LanguageTab setPieChartData={setPieChartData}/>
             </TabPanels>
           </Tabs>
+          
+        </Box>
+
+
+        <Box
+            bgColor="#b4e2dc"
+            w="33.33%"
+          >
+            { pieChartData ? <PieChart data={pieChartData} /> : <PieLoading /> }
         </Box>
       </Box>
     </>

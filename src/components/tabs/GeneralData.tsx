@@ -1,27 +1,72 @@
-import { Box, Divider, Text, SkeletonText } from '@chakra-ui/react'
+import { Box, Divider, Skeleton, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { getApi } from "../../api/api";
 
-type Props = {
-  results: number | undefined;
-}
 
-export const GeneralData = ({ results }:Props ) => {
+
+export const GeneralData = () => {
+
+  const [data, setData] = useState<number>()
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      const response = await getApi('format')      
+      setData(response.resultCount)
+    }
+    fetchData();
+     
+  }, [])
+  
   return (
-    <Box bgColor="#68b9b7" w="33.33%" py="10" borderTopLeftRadius={8} borderBottomLeftRadius={8} display="flex" justifyContent="center" alignItems="center" flexDir="column" >
+    <Box
+      bgColor="#68b9b7"
+      w="33.33%"
+      // py="10"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDir="column"
+    >
       <Box>
-        <Text as="span" fontSize="3xl" fontWeight="semibold" color="white">
-          <b>12</b> - Nodos nacionales
+        <Box display="flex" justifyContent="center">
+          <Text
+            textAlign="center"
+            as="span"
+            fontSize="2xl"
+            fontWeight="semibold"
+            color="white"
+          >
+            12
+          </Text>
+        </Box>
+        <Text as="span" fontSize="2xl" fontWeight="semibold" color="white">
+          Nodos nacionales
         </Text>
       </Box>
       <Divider my="3" w="50%" />
       <Box>
-        {results ? (
-          <Text as="span" fontSize="3xl" fontWeight="semibold" color="white">
-            <b>{results.toLocaleString()}</b> - Documentos 
-          </Text>
+        {data ? (
+          <>
+            <Box display="flex" justifyContent="center">
+              <Text
+                textAlign="center"
+                as="span"
+                fontSize="2xl"
+                fontWeight="semibold"
+                color="white"
+              >
+                <b>{data.toLocaleString()}</b>
+              </Text>
+            </Box>
+            <Text as="span" fontSize="2xl" fontWeight="semibold" color="white">
+              Documentos
+            </Text>
+          </>
         ) : (
-          <SkeletonText noOfLines={1} spacing="4" width="20em" />
+          <Skeleton w="300px" h="20px" />
         )}
       </Box>
     </Box>
-  )
-}
+  );
+};

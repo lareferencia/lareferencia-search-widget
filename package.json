@@ -2,10 +2,10 @@
   "name": "lareferencia-search-widget",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "node scripts/bundle-single.js",
+    "build-vie": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

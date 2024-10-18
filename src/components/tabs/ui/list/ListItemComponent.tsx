@@ -1,29 +1,33 @@
-import { ListItem, Text } from '@chakra-ui/react';
-import { Format } from '../../../../types/api';
+import { Box, ListItem, Text } from "@chakra-ui/react";
 
 //TODO: Ignore this fn, will be deleted when we implement localization for translations
 const capitalizeFirstLetter = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+export const ListItemComponent = ({ item }: { item: any }) => {
 
-export const ListItemComponent = ({ item }: { item: Format }) => {
+  
+  return (
+    <Box as="li" listStyleType='none' >
+      <Box display="flex" justifyContent="space-between" alignItems="center" gap='4'>
+        
+        <Box width="50%" textAlign="right">
+          <Text
+            fontWeight='bold'
+            color="gray.700"
+          >
+            {item.count.toLocaleString()}
+          </Text>
+        </Box>
 
-    return (
-        <ListItem
-            flex='0 0 45%'
-            maxW='50%'
-            sx={{
-                '::marker': {
-                    color: '#b4e2dc',
-                }
-            }}
-        >
+        <Box width="50%" textAlign="left">
+            <Text as="span" fontSize="md" fontWeight="semibold" color="gray.100">
+            {capitalizeFirstLetter(item.translated)}
+          </Text>
+        </Box>
 
-            <Text as="span" fontSize="lg" fontWeight="semibold" color="white">
-                {capitalizeFirstLetter(item.translated)} - {item.count.toLocaleString()}
-            </Text>
-
-        </ListItem>
-    );
-}
+      </Box>
+    </Box>
+  );
+};
