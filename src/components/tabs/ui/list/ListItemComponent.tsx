@@ -1,4 +1,4 @@
-import { Box, ListItem, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 //TODO: Ignore this fn, will be deleted when we implement localization for translations
 const capitalizeFirstLetter = (string: string) => {
@@ -14,6 +14,7 @@ export const ListItemComponent = ({ item }: { item: any }) => {
         
         <Box width="50%" textAlign="right">
           <Text
+            as='span'
             fontWeight='bold'
             color="gray.700"
           >
