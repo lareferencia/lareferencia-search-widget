@@ -51,12 +51,20 @@ const colorfulVariant = definePartsStyle(() => {
   
     return {
       tab: {
+        border: 'none',
+        backgroundColor: 'transparent',
         borderBottom: '3px solid #b4e2dc',
         fontWeight: 'bold',
         color: '#355857',
         _selected: {
           borderBottom: '3px solid #68b9b7',
         },
+        _hover: {
+          bgColor: 'transparent'
+        },
+        _focus: {
+          bgColor: 'transparent'
+        }
       },
       tablist: {
       },
