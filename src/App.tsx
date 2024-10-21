@@ -4,7 +4,7 @@ import { TabsContainer } from "./components/tabs/TabsContainer";
 
 function App() {
   return (
-    <Box p={2}
+    <Box
     >
 
       <SearchContainer />

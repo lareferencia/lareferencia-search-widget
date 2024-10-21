@@ -18,16 +18,17 @@ export const SearchContainer = () => {
     onSubmit={handleSubmit} 
     as="form" display="flex" gap="2" mb='3'>
         {/* SEARCH */}
-        <Box w="70%">
+        <Box w="80%">
           <Input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             type="text"
-           h='50px' placeholder="Ingresar texto" border='1px solid' borderColor='gray.400' />
+            placeholder="Ingresar texto" 
+            style={{height:'50px', border:'1px solid', borderColor:'#A0AEC0'}} />
         </Box>
 
-        <Box>
-          <Select placeholder="Todos los campos" h='50px' border='1px solid' borderColor='gray.400'>
+        <Box w='20%'>
+          <Select p='0px' placeholder="Todos los campos" h='50px' border='1px solid' borderColor='gray.400'>
             <Box as="option" value="option1">Titulo</Box>
             <option value="option2">Autor</option>
             <option value="option3">Materia</option>
