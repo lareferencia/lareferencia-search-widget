@@ -56,7 +56,7 @@ export const GeneralData = () => {
                 fontWeight="semibold"
                 color="white"
               >
-                <b>{data.toLocaleString()}</b>
+                {data.toLocaleString()}
               </Text>
             </Box>
             <Text as="span" fontSize="2xl" fontWeight="semibold" color="white">

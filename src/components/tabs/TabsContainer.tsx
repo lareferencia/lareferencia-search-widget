@@ -22,12 +22,12 @@ export const TabsContainer = () => {
 
           <Tabs variant="colorful">
             <TabList>
-              <Tab>Tipo de documento</Tab>
-              <Tab>Paìs</Tab>
-              <Tab>Idioma</Tab>
+              <Tab as='div' sx={{cursor:'pointer'}}>Tipo de documento</Tab>
+              <Tab as='div' sx={{cursor:'pointer'}}>Paìs</Tab>
+              <Tab as='div' sx={{cursor:'pointer'}}>Idioma</Tab>
             </TabList>
 
-            <TabPanels onChange={() => console.log(e)}>
+            <TabPanels>
               {/* Format tab */}
               <FormatTab setPieChartData={setPieChartData} />
 
@@ -52,3 +52,5 @@ export const TabsContainer = () => {
     </>
   );
 };
+
+
