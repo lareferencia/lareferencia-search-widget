@@ -22,9 +22,9 @@ export const TabsContainer = () => {
 
           <Tabs variant="colorful">
             <TabList>
-              <Tab as='div' sx={{cursor:'pointer'}}>Tipo de documento</Tab>
-              <Tab as='div' sx={{cursor:'pointer'}}>Paìs</Tab>
-              <Tab as='div' sx={{cursor:'pointer'}}>Idioma</Tab>
+              <Tab style={{backgroundColor:'none'}}>Tipo de documento</Tab>
+              <Tab style={{backgroundColor:'transparent'}}>País</Tab>
+              <Tab type="reset" >Idioma</Tab>
             </TabList>
 
             <TabPanels>
