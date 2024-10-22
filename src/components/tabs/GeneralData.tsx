@@ -11,7 +11,9 @@ export const GeneralData = () => {
   useEffect(() => {
     
     const fetchData = async () => {
-      const response = await getApi('format')      
+      const response = await getApi('')  
+      console.log(response);
+          
       setData(response.resultCount)
     }
     fetchData();

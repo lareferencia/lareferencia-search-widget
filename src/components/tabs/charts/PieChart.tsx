@@ -9,6 +9,8 @@ interface PieChartProps {
 
 export const PieChart : React.FC<PieChartProps> = ({ data }) => {
   
+  console.log(data);
+  
   
   const chartRef = useRef<HTMLDivElement>(null);
 
@@ -45,13 +47,17 @@ export const PieChart : React.FC<PieChartProps> = ({ data }) => {
               show: true,
               position: 'center',
               color: 'black',
-              fontSize: 14,
+              fontSize: 13,
               fontWeight: 'bold',
+              formatter: function(params: any) {
+                const percentage = params.percent;
+                return `${params.name}\n\n(${percentage}%)`;
+              }
             },
             emphasis: {
               label: {
                 show: true,
-                fontSize: 14,
+                fontSize: 13,
                 fontWeight: 'bold',
                 color: 'black',
                 backgroundColor: '#7FC7BD',

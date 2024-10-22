@@ -1,26 +1,66 @@
-import { Box, Tab, TabList, TabPanels, Tabs } from "@chakra-ui/react";
+import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { GeneralData } from "./GeneralData";
-import { FormatTab } from "./FormatTab";
-import { LanguageTab } from "./LanguageTab";
-import { CountryTab } from "./CountryTab";
+
 import { PieLoading } from "./ui/PieLoading";
 import { PieChart } from "./charts/PieChart";
-import { useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
+import { getApi } from "../../api/api";
+
+const FormatTab = React.lazy(() => import("./FormatTab"));
+const CountryTab = React.lazy(() => import("./CountryTab"));
+const LanguageTab = React.lazy(() => import("./LanguageTab"));
 
 export const TabsContainer = () => {
   // hook for api response
-  const [pieChartData, setPieChartData] = useState()
+  const [data, setData] = useState();
+  const [tabIndex, setTabIndex] = useState(0)
+
+
+  const fetchData = async () => {
+    let param: string = "";
+    switch (tabIndex) {
+      case 0:
+        param = "format";
+        break;
+      case 1:
+        param = "network_name_str";
+        break;
+      case 2:
+        param = "language";
+        break;
+      default:
+        break;
+    }
+    
+    try {
+      const response = await getApi(param);
+      setData(response);
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+  };
+
+  useEffect(() => {
+    fetchData();
+  
+    
+  }, [tabIndex])
+  
+
+
 
   return (
     <>
       {/* PANELS */}
-      <Box display="flex">
+      <Box display="flex" maxH={200}>
         {/* General data */}
         <GeneralData/>
 
         <Box bgColor="#7FC7BD" w="66.66%">
 
-          <Tabs variant="colorful">
+          <Tabs variant="colorful" onChange={(i) => setTabIndex(i)}>
             <TabList>
               <Tab style={{ color: '#355857' }}>Tipo de documento</Tab>
               <Tab style={{ color: '#355857'}}>País</Tab>
@@ -28,14 +68,30 @@ export const TabsContainer = () => {
             </TabList>
 
             <TabPanels>
-              {/* Format tab */}
-              <FormatTab setPieChartData={setPieChartData} />
+              <TabPanel padding={0}>
+                {tabIndex === 0 &&  (
+                  <Suspense >
+                    <FormatTab />
+                  </Suspense>
+                )}
+              </TabPanel>
 
-              {/* Country tab */}
-              <CountryTab setPieChartData={setPieChartData}/>
+              <TabPanel>
+                {tabIndex === 1 && (
+                  <Suspense >
+                    <CountryTab />
+                  </Suspense>
+                )}
+              </TabPanel>
 
-              {/* Language tab */}
-              <LanguageTab setPieChartData={setPieChartData}/>
+              <TabPanel>
+                {tabIndex === 2 && (
+                  <Suspense >
+                    <LanguageTab />
+                  </Suspense>
+                )}
+              </TabPanel>
+
             </TabPanels>
           </Tabs>
           
@@ -46,8 +102,9 @@ export const TabsContainer = () => {
             bgColor="#b4e2dc"
             w="33.33%"
           >
-            { pieChartData ? <PieChart data={pieChartData} /> : <PieLoading /> }
+            { data ? <PieChart data={data} /> : <PieLoading /> }
         </Box>
+
       </Box>
     </>
   );

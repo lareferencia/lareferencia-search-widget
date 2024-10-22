@@ -4,13 +4,10 @@ import { TabsContainer } from "./components/tabs/TabsContainer";
 
 function App() {
   return (
-    <Box
-    >
-
+    <Box >
       <SearchContainer />
-      
-      <TabsContainer />
 
+      <TabsContainer />
     </Box>
   );
 }

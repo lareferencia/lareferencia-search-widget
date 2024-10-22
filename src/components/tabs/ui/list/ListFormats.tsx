@@ -1,5 +1,4 @@
-import { List, SimpleGrid } from "@chakra-ui/react";
-import { Format } from "../../../../interfaces/api";
+import { SimpleGrid } from "@chakra-ui/react";
 import { ListItemComponent } from "./ListItemComponent";
 import { ListLoading } from "./ListLoading";
 
@@ -10,6 +9,8 @@ type Props = {
 
 export const ListFormats = ({ format }: Props) => {
 
+  
+  
   const columns = format ? Math.ceil(format.length / 4) : 1; // Calcula las columnas necesarias.
 
   return (

@@ -43,6 +43,9 @@ const baseStyle = definePartsStyle({
   tab: {
     fontWeight: 'semibold', // change the font weight
   },
+  tabpanel:{
+    padding: '0',
+  }
 })
 
 // export the component theme
