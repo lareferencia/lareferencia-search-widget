@@ -9,7 +9,6 @@ interface PieChartProps {
 
 export const PieChart : React.FC<PieChartProps> = ({ data }) => {
   
-  console.log(data);
   
   
   const chartRef = useRef<HTMLDivElement>(null);

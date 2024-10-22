@@ -12,7 +12,6 @@ export const GeneralData = () => {
     
     const fetchData = async () => {
       const response = await getApi('')  
-      console.log(response);
           
       setData(response.resultCount)
     }

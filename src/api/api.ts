@@ -14,7 +14,6 @@ export const getApi = async (type: string ): Promise<ApiResponse> => {
       }
       const response = await axios.get<ApiResponse>(api + type + '&limit=10');
 
-      console.log(response.data);
       
       switch (type) {
         case 'format':

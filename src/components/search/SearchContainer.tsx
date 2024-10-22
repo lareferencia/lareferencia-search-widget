@@ -6,10 +6,12 @@ export const SearchContainer = () => {
   // get data from the input
 
   const [search, setSearch] = useState('')
+  const [field, setField] = useState('AllFields')
   
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    window.open(`https://www.lareferencia.info/vufind/Search/Results?lookfor=${search}&type=${field}`, '_blank')
   }
   
 
@@ -28,11 +30,12 @@ export const SearchContainer = () => {
         </Box>
 
         <Box w='20%'>
-          <Select p='0px' placeholder="Todos los campos" h='50px' border='1px solid' borderColor='gray.400'>
-            <Box as="option" value="option1">Titulo</Box>
-            <option value="option2">Autor</option>
-            <option value="option3">Materia</option>
-            <option value="option4">País</option>
+          <Select p='0px' h='50px' border='1px solid' borderColor='gray.400' onChange={(e)=>setField(e.target.value)}>
+            <Box as="option" value="AllFields">Todos los campos</Box>
+            <Box as="option" value="Author">Titulo</Box>
+            <Box as="option" value="Title">Autor</Box>
+            <Box as="option" value="Subject">Materia</Box>
+            <Box as="option" value="network_name_str">País</Box>
           </Select>
         </Box>
         <Box>
