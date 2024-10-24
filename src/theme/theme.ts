@@ -17,7 +17,7 @@ const brandPrimary = defineStyle({
 })
 
 const brandSecondary = defineStyle({
-    color: 'gray.700',
+    color: 'rgb(53, 88, 87)',
     fontWeight: 'semibold',
     border: '2px solid #F1686A',
   

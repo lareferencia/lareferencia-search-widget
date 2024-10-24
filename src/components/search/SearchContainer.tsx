@@ -18,7 +18,7 @@ export const SearchContainer = () => {
   return (
     <Box
     onSubmit={handleSubmit} 
-    as="form" display="flex" gap="2" mb='3'>
+    as="form" display="flex" gap="2" my='6'>
         {/* SEARCH */}
         <Box w="80%">
           <Input
@@ -26,11 +26,11 @@ export const SearchContainer = () => {
             onChange={(e) => setSearch(e.target.value)}
             type="text"
             placeholder="Ingresar texto" 
-            style={{height:'50px', border:'1px solid', borderColor:'#A0AEC0'}} />
+            style={{height:'50px', border:'2px solid', borderColor:'#d9e1ec', borderRadius: '6px'}} />
         </Box>
 
         <Box w='20%'>
-          <Select p='0px' h='50px' border='1px solid' borderColor='gray.400' onChange={(e)=>setField(e.target.value)}>
+          <Select p='0px' h='50px' onChange={(e)=>setField(e.target.value)} style={{height:'50px', border:'2px solid', borderColor:'#d9e1ec', borderRadius: '6px', paddingTop:'0px'}}>
             <Box as="option" value="AllFields">Todos los campos</Box>
             <Box as="option" value="Author">Titulo</Box>
             <Box as="option" value="Title">Autor</Box>
