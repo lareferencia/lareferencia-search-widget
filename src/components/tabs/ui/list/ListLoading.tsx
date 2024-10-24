@@ -3,7 +3,7 @@ import { Box, Skeleton } from "@chakra-ui/react";
 export const ListLoading = () => {
   return Array.from({ length: 4 }).map((_, index) => (
  
-    <Box as="li" listStyleType="none" key={index} >
+    <Box as="li" listStyleType="none" key={index} px='50px' >
       <Box
         display="flex"
         justifyContent="space-between"

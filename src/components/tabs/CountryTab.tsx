@@ -19,7 +19,7 @@ const CountryTab = () => {
   }, []);
 
   return (
-      <Box bgColor="#7FC7BD" p="4">
+      <Box bgColor="#7FC7BD" p="1">
         <ListFormats format={data} />
       </Box>
   );

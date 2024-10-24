@@ -28,6 +28,7 @@ export const GeneralData = () => {
       justifyContent="center"
       alignItems="center"
       flexDir="column"
+      p={4}
     >
       <Box>
         <Box display="flex" justifyContent="center">

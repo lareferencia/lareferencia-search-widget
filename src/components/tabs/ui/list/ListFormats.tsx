@@ -15,7 +15,7 @@ export const ListFormats = ({ format }: Props) => {
 
   return (
     <SimpleGrid as='ul'
-    columns={columns} spacing={2}
+    columns={columns} spacing={1}
     >
       {format ? (
         format.map((item) => (

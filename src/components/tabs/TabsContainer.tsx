@@ -54,20 +54,20 @@ export const TabsContainer = () => {
   return (
     <>
       {/* PANELS */}
-      <Box display="flex" maxH={200}>
+      <Box display="flex" h='220px'>
         {/* General data */}
         <GeneralData/>
 
         <Box bgColor="#7FC7BD" w="66.66%">
 
-          <Tabs variant="colorful" onChange={(i) => setTabIndex(i)}>
+          <Tabs variant="colorful" onChange={(i) => setTabIndex(i)} h='100%'>
             <TabList>
               <Tab style={{ color: '#355857' }}>Tipo de documento</Tab>
               <Tab style={{ color: '#355857'}}>País</Tab>
               <Tab style={{ color: '#355857'}} >Idioma</Tab>
             </TabList>
 
-            <TabPanels>
+            <TabPanels display='flex' flexDir='column' justifyContent='center' h='calc(100% - 35px)'>
               <TabPanel padding={0}>
                 {tabIndex === 0 &&  (
                   <Suspense >
