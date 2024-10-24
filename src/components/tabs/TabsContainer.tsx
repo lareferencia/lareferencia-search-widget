@@ -101,6 +101,8 @@ export const TabsContainer = () => {
         <Box
             bgColor="#b4e2dc"
             w="33.33%"
+            borderBottomRightRadius={6}
+            borderTopRightRadius={6}
           >
             { data ? <PieChart data={data} /> : <PieLoading /> }
         </Box>

@@ -8,6 +8,7 @@ const brandPrimary = defineStyle({
     background: '#F1686A',
     color: 'white',
     fontWeight: 'semibold',
+    border:'none',
 
     // let's also provide dark mode alternatives
     _dark: {
