@@ -5,6 +5,7 @@ import { PieLoading } from "./ui/PieLoading";
 import { PieChart } from "./charts/PieChart";
 import React, { Suspense, useEffect, useState } from "react";
 import { getApi } from "../../api/api";
+import { useTranslation } from "../../hooks/useTranslation";
 
 const FormatTab = React.lazy(() => import("./FormatTab"));
 const CountryTab = React.lazy(() => import("./CountryTab"));
@@ -14,6 +15,7 @@ export const TabsContainer = () => {
   // hook for api response
   const [data, setData] = useState();
   const [tabIndex, setTabIndex] = useState(0)
+  const { t } = useTranslation();
 
 
   const fetchData = async () => {
@@ -62,9 +64,9 @@ export const TabsContainer = () => {
 
           <Tabs variant="colorful" onChange={(i) => setTabIndex(i)} h='100%'>
             <TabList>
-              <Tab style={{ color: '#355857' }}>Tipo de documento</Tab>
-              <Tab style={{ color: '#355857'}}>País</Tab>
-              <Tab style={{ color: '#355857'}} >Idioma</Tab>
+              <Tab style={{ color: '#355857' }}>{t('typeOfDocument')}</Tab>
+              <Tab style={{ color: '#355857'}}>{t('country')}</Tab>
+              <Tab style={{ color: '#355857'}} >{t('language')}</Tab>
             </TabList>
 
             <TabPanels display='flex' flexDir='column' justifyContent='center' h='calc(100% - 35px)'>

@@ -2,18 +2,17 @@ import axios from "axios";
 import { ApiResponse } from "../interfaces/api";
 
 
-const api = "https://www.lareferencia.info/vufind/api/v1/search?type=AllFields&facet[]="
+const api = "https://www.lareferencia.info/vufind/api/v1/search?type=AllFields&lang=en&facet[]="
 
 export const getApi = async (type: string ): Promise<ApiResponse> => {
   
   
     try {
       if (type === '') {
-        const response = await axios.get<ApiResponse>(api + 'format' + '&limit=10');
+        const response = await axios.get<ApiResponse>(api + 'format' + '&limit=10' );
         return response.data;
       }
-      const response = await axios.get<ApiResponse>(api + type + '&limit=10');
-
+      const response = await axios.get<ApiResponse>(api + type + '&limit=10' );
       
       switch (type) {
         case 'format':

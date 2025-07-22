@@ -1,4 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
+import { useTranslation } from "../../../../hooks/useTranslation";
 
 //TODO: Ignore this fn, will be deleted when we implement localization for translations
 const capitalizeFirstLetter = (string: string) => {
@@ -7,6 +8,8 @@ const capitalizeFirstLetter = (string: string) => {
 
 export const ListItemComponent = ({ item }: { item: any }) => {
 
+  const { t } = useTranslation();
+  console.log(item);
   
   return (
     <Box as="li" listStyleType='none' >
@@ -25,7 +28,7 @@ export const ListItemComponent = ({ item }: { item: any }) => {
 
         <Box width="60%" textAlign="left">
             <Text as="span" fontSize="14px" fontWeight="semibold" color="gray.100">
-            {capitalizeFirstLetter(item.translated)}
+            {capitalizeFirstLetter(t(item.value))}
           </Text>
         </Box>
 

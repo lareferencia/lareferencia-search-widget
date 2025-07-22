@@ -9,8 +9,6 @@ type Props = {
 
 export const ListFormats = ({ format }: Props) => {
 
-  
-  
   const columns = format ? Math.ceil(format.length / 4) : 1; // Calcula las columnas necesarias.
 
   return (
@@ -18,8 +16,8 @@ export const ListFormats = ({ format }: Props) => {
     columns={columns} spacing={1}
     >
       {format ? (
-        format.map((item) => (
-          <ListItemComponent item={ item } key={ item.translated } />
+        format.map(( item ) => (
+          <ListItemComponent item={ item } key={ item.value } />
         ))
       ) : (
         <ListLoading />

@@ -1,0 +1,44 @@
+{
+    "article": "artículo",
+    "masterThesis": "tesis de maestría",
+    "doctoralThesis": "tesis de doctorado",
+    "book": "libro",
+    "report": "informe",
+    "bookPart": "parte de libro",
+    "dataset": "conjunto de datos",
+    "typeOfDocument": "Tipo de documento",
+    "language": "Idioma",
+    "country": "País",
+    "nationalNodes": "Nodos Nacionales",
+    "documents": "Documentos",
+    "search": "Buscar",
+    "advancedSearch": "Búsqueda avanzada",
+    "title": "Título",
+    "author": "Autor",
+    "subject": "Asunto",
+    "allFields": "Todos los campos",
+    "startToSearch": "Comenzar a buscar",
+
+
+    "Brasil": "Brasil",
+    "España": "España",
+    "Argentina": "Argentina",
+    "Colombia": "Colombia",
+    "Perú": "Perú",
+    "Chile": "Chile",
+    "México": "México",
+    "Ecuador": "Ecuador",
+    "Costa Rica": "Costa Rica",
+    "Uruguay": "Uruguay",
+    "El Salvador": "El Salvador",
+    "Panamá": "Panamá",
+
+    "eng": "Inglés",
+    "spa": "Español",
+    "por": "Portugués",
+    "fra": "Francés",
+    "cat": "Catalán",
+    "gal": "Gallego"
+
+
+}

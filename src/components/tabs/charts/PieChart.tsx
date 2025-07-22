@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import * as echarts from "echarts";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "../../../hooks/useTranslation";
 
 //interface for data coming as props
 interface PieChartProps {
@@ -8,17 +9,19 @@ interface PieChartProps {
 }
 
 export const PieChart : React.FC<PieChartProps> = ({ data }) => {
-  
-  
+  const { t } = useTranslation();
+
   
   const chartRef = useRef<HTMLDivElement>(null);
 
   
   useEffect(() => {
+
+    
     const myChart = echarts.init(chartRef.current);
 
     // clean Format
-    const formatClean = data.map(item => ({ value: item.count, name: item.translated }))
+    const formatClean = data.map(item => ({ value: item.count, name: item.value }))
 
     if (chartRef.current) {
       const option = {
@@ -50,7 +53,7 @@ export const PieChart : React.FC<PieChartProps> = ({ data }) => {
               fontWeight: 'bold',
               formatter: function(params: any) {
                 const percentage = params.percent;
-                return `${params.name}\n\n(${percentage}%)`;
+                return `${t(params.name)}\n\n(${percentage}%)`;
               }
             },
             emphasis: {
@@ -64,7 +67,7 @@ export const PieChart : React.FC<PieChartProps> = ({ data }) => {
                 borderRadius: 8,
                 formatter: function(params: any) {
                   const percentage = params.percent;
-                  return `${params.name}\n\n(${percentage}%)`;
+                  return `${t(params.name)}\n\n(${percentage}%)`;
                 }
               }
             },

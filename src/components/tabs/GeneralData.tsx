@@ -1,12 +1,14 @@
 import { Box, Divider, Skeleton, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { getApi } from "../../api/api";
+import { useTranslation } from "../../hooks/useTranslation";
 
 
 
 export const GeneralData = () => {
 
   const [data, setData] = useState<number>()
+  const { t } = useTranslation();
 
   useEffect(() => {
     
@@ -45,7 +47,7 @@ export const GeneralData = () => {
           </Text>
         </Box>
         <Text as="span" fontSize="2xl" fontWeight="semibold" color="white">
-          Nodos nacionales
+          {t('nationalNodes')}
         </Text>
       </Box>
       <Divider my="3" w="50%" />
@@ -64,7 +66,7 @@ export const GeneralData = () => {
               </Text>
             </Box>
             <Text as="span" fontSize="2xl" fontWeight="semibold" color="white">
-              Documentos
+              {t('documents')}
             </Text>
           </>
         ) : (
