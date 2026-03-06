@@ -76,10 +76,10 @@ export const TabsContainer = () => {
         >
 
           <Tabs variant="colorful" onChange={(i) => setTabIndex(i)} h='100%'>
-            <TabList>
-              <Tab style={{ color: 'white' }}>{t('typeOfDocument')}</Tab>
-              <Tab style={{ color: 'white' }}>{t('country')}</Tab>
-              <Tab style={{ color: 'white' }} >{t('language')}</Tab>
+            <TabList display="flex" w="100%">
+              <Tab flex={1} style={{ color: 'white' }}>{t('typeOfDocument')}</Tab>
+              <Tab flex={1} style={{ color: 'white' }}>{t('country')}</Tab>
+              <Tab flex={1} style={{ color: 'white' }} >{t('language')}</Tab>
             </TabList>
 
             <TabPanels display='flex' flexDir='column' justifyContent='center' h='calc(100% - 35px)'>
