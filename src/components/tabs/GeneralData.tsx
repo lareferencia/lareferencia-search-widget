@@ -11,19 +11,19 @@ export const GeneralData = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    
+
     const fetchData = async () => {
-      const response = await getApi('')  
-          
+      const response = await getApi('')
+
       setData(response.resultCount)
     }
     fetchData();
-     
+
   }, [])
-  
+
   return (
     <Box
-      bgColor="#68b9b7"
+
       w="33.33%"
       // py="10"
       display="flex"

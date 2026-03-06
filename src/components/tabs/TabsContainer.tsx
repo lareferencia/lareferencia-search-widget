@@ -33,45 +33,45 @@ export const TabsContainer = () => {
       default:
         break;
     }
-    
+
     try {
       const response = await getApi(param);
       setData(response);
     } catch (error) {
       console.log(error);
-      
+
     }
-    
+
   };
 
   useEffect(() => {
     fetchData();
-  
-    
+
+
   }, [tabIndex])
-  
+
 
 
 
   return (
     <>
       {/* PANELS */}
-      <Box display="flex" h='220px'>
+      <Box display="flex" h='250px' border='1px solid white' borderRightRadius='30px' borderLeftRadius='30px'>
         {/* General data */}
-        <GeneralData/>
+        <GeneralData />
 
-        <Box bgColor="#7FC7BD" w="66.66%">
+        <Box w="66.66%" borderLeft='1px solid white' borderRight='1px solid white'>
 
           <Tabs variant="colorful" onChange={(i) => setTabIndex(i)} h='100%'>
             <TabList>
-              <Tab style={{ color: '#355857' }}>{t('typeOfDocument')}</Tab>
-              <Tab style={{ color: '#355857'}}>{t('country')}</Tab>
-              <Tab style={{ color: '#355857'}} >{t('language')}</Tab>
+              <Tab style={{ color: 'white' }}>{t('typeOfDocument')}</Tab>
+              <Tab style={{ color: 'white' }}>{t('country')}</Tab>
+              <Tab style={{ color: 'white' }} >{t('language')}</Tab>
             </TabList>
 
             <TabPanels display='flex' flexDir='column' justifyContent='center' h='calc(100% - 35px)'>
               <TabPanel padding={0}>
-                {tabIndex === 0 &&  (
+                {tabIndex === 0 && (
                   <Suspense >
                     <FormatTab />
                   </Suspense>
@@ -96,20 +96,19 @@ export const TabsContainer = () => {
 
             </TabPanels>
           </Tabs>
-          
+
         </Box>
 
 
         <Box
-            bgColor="#b4e2dc"
-            w="33.33%"
-            borderBottomRightRadius={6}
-            borderTopRightRadius={6}
-          >
-            { data ? <PieChart data={data} /> : <PieLoading /> }
+          w="33.33%"
+          borderBottomRightRadius={6}
+          borderTopRightRadius={6}
+        >
+          {data ? <PieChart data={data} /> : <PieLoading />}
         </Box>
 
-      </Box>
+      </Box >
     </>
   );
 };

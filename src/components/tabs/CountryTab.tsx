@@ -11,7 +11,7 @@ const CountryTab = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getApi("network_name_str");
-      
+
       setData(response);
     };
     fetchData();
@@ -19,9 +19,9 @@ const CountryTab = () => {
   }, []);
 
   return (
-      <Box bgColor="#7FC7BD" p="1">
-        <ListFormats format={data} />
-      </Box>
+    <Box p="1">
+      <ListFormats format={data} />
+    </Box>
   );
 };
 
