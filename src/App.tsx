@@ -5,7 +5,7 @@ import { TabsContainer } from "./components/tabs/TabsContainer";
 function App() {
   return (
     <Box >
-      <SearchContainer />
+      {/* <SearchContainer /> */}
 
       <TabsContainer />
     </Box>
