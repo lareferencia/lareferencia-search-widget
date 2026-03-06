@@ -23,16 +23,13 @@ export const GeneralData = () => {
 
   return (
     <Box
-
-      w="33.33%"
+      w={{ base: '100%', lg: '33.33%' }}
       // py="10"
       display="flex"
       justifyContent="center"
       alignItems="center"
       flexDir="column"
       p={4}
-      borderBottomLeftRadius={6}
-      borderTopLeftRadius={6}
     >
       <Box>
         <Box display="flex" justifyContent="center">

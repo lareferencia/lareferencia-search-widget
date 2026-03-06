@@ -56,11 +56,24 @@ export const TabsContainer = () => {
   return (
     <>
       {/* PANELS */}
-      <Box display="flex" h='250px' border='1px solid white' borderRightRadius='30px' borderLeftRadius='30px'>
+      <Box
+        display="flex"
+        flexDir={{ base: 'column', lg: 'row' }}
+        h={{ base: 'auto', lg: '250px' }}
+        border='1px solid white'
+        borderRadius='30px'
+        overflow="hidden"
+      >
         {/* General data */}
         <GeneralData />
 
-        <Box w="66.66%" borderLeft='1px solid white' borderRight='1px solid white'>
+        <Box
+          w={{ base: '100%', lg: '66.66%' }}
+          borderLeft={{ base: 'none', lg: '1px solid white' }}
+          borderRight={{ base: 'none', lg: '1px solid white' }}
+          borderTop={{ base: '1px solid white', lg: 'none' }}
+          borderBottom={{ base: '1px solid white', lg: 'none' }}
+        >
 
           <Tabs variant="colorful" onChange={(i) => setTabIndex(i)} h='100%'>
             <TabList>
@@ -101,9 +114,8 @@ export const TabsContainer = () => {
 
 
         <Box
-          w="33.33%"
-          borderBottomRightRadius={6}
-          borderTopRightRadius={6}
+          w={{ base: '100%', lg: '33.33%' }}
+          p={{ base: 4, lg: 0 }}
         >
           {data ? <PieChart data={data} /> : <PieLoading />}
         </Box>
