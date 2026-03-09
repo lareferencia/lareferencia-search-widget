@@ -20,7 +20,7 @@ const CountryTab = () => {
 
   return (
     <Box p="1">
-      <ListFormats format={data} />
+      <ListFormats format={data} columnsBase={2} />
     </Box>
   );
 };

@@ -4,20 +4,26 @@ import { ListLoading } from "./ListLoading";
 
 type Props = {
   format: any;
+  columnsBase?: number;
 };
 
 
-export const ListFormats = ({ format }: Props) => {
+export const ListFormats = ({ format, columnsBase = 1 }: Props) => {
 
   const columns = format ? Math.ceil(format.length / 4) : 1; // Calcula las columnas necesarias.
 
   return (
-    <SimpleGrid as='ul'
-    columns={columns} spacing={1}
+    //No quiero que sea grid en pantallas pequeñas
+    //Quiero que sea una lista
+
+    <SimpleGrid
+      as='ul'
+      columns={{ base: columnsBase, md: 2, lg: columns }}
+      spacing={1}
     >
       {format ? (
-        format.map(( item ) => (
-          <ListItemComponent item={ item } key={ item.value } />
+        format.map((item) => (
+          <ListItemComponent item={item} key={item.value} />
         ))
       ) : (
         <ListLoading />

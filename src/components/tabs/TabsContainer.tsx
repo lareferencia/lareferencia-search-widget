@@ -115,6 +115,7 @@ export const TabsContainer = () => {
 
         <Box
           w={{ base: '100%', lg: '33.33%' }}
+          h={{ base: '250px', lg: 'auto' }}
           p={{ base: 4, lg: 0 }}
         >
           {data ? <PieChart data={data} /> : <PieLoading />}
