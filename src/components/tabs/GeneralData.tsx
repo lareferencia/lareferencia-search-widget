@@ -1,75 +1,66 @@
-import { Box, Divider, Skeleton, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { getApi } from "../../api/api";
+import { Box, Skeleton, Text } from "@chakra-ui/react";
 import { useTranslation } from "../../hooks/useTranslation";
 
+interface GeneralDataProps {
+  resultCount?: number;
+  loading: boolean;
+}
 
-
-export const GeneralData = () => {
-
-  const [data, setData] = useState<number>()
+export const GeneralData = ({ resultCount, loading }: GeneralDataProps) => {
   const { t } = useTranslation();
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      const response = await getApi('')
-
-      setData(response.resultCount)
-    }
-    fetchData();
-
-  }, [])
 
   return (
     <Box
-      w={{ base: '100%', lg: '33.33%' }}
-      // py="10"
       display="flex"
-      justifyContent="center"
-      alignItems="center"
       flexDir="column"
-      p={4}
+      justifyContent="center"
+      gap={5}
+      p={5}
+      h="100%"
     >
-      <Box>
-        <Box display="flex" justifyContent="center">
-          <Text
-            textAlign="center"
-            as="span"
-            fontSize="2xl"
-            fontWeight="semibold"
-            color="white"
-          >
-            12
-          </Text>
-        </Box>
-        <Text as="span" fontSize="2xl" fontWeight="semibold" color="white">
-          {t('nationalNodes')}
-        </Text>
-      </Box>
-      <Divider my="3" w="50%" />
-      <Box>
-        {data ? (
-          <>
-            <Box display="flex" justifyContent="center">
-              <Text
-                textAlign="center"
-                as="span"
-                fontSize="2xl"
-                fontWeight="semibold"
-                color="white"
-              >
-                {data.toLocaleString()}
-              </Text>
-            </Box>
-            <Text as="span" fontSize="2xl" fontWeight="semibold" color="white">
-              {t('documents')}
-            </Text>
-          </>
-        ) : (
-          <Skeleton w="300px" h="20px" />
-        )}
-      </Box>
+      <StatItem
+        value="12"
+        label={t('nationalNodes')}
+      />
+      <StatItem
+        value={loading ? null : (resultCount?.toLocaleString() ?? '—')}
+        label={t('documents')}
+        loading={loading}
+      />
     </Box>
   );
 };
+
+interface StatItemProps {
+  value: string | null;
+  label: string;
+  loading?: boolean;
+}
+
+const StatItem = ({ value, label, loading }: StatItemProps) => (
+  <Box>
+    {loading ? (
+      <Skeleton h="32px" w="90px" mb={1} startColor="whiteAlpha.200" endColor="whiteAlpha.100" borderRadius="md" />
+    ) : (
+      <Text
+        fontSize="2xl"
+        fontWeight="800"
+        color="white"
+        lineHeight="1"
+        letterSpacing="-0.5px"
+      >
+        {value}
+      </Text>
+    )}
+    <Text
+      fontSize="11px"
+      fontWeight="600"
+      color="rgba(255,255,255,0.5)"
+      textTransform="uppercase"
+      letterSpacing="0.08em"
+      mt="4px"
+    >
+      {label}
+    </Text>
+  </Box>
+);

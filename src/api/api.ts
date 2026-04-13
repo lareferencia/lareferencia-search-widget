@@ -1,33 +1,27 @@
 import axios from "axios";
-import { ApiResponse } from "../interfaces/api";
+import { ApiResponse, FacetItem } from "../interfaces/api-response";
 
+const BASE = "https://www.lareferencia.info/vufind/api/v1/search?type=AllFields&lang=en&facet[]=";
 
-const api = "https://www.lareferencia.info/vufind/api/v1/search?type=AllFields&lang=en&facet[]="
+const get = async (facet: string): Promise<ApiResponse> => {
+  const response = await axios.get<ApiResponse>(`${BASE}${facet}&limit=10`);
+  return response.data;
+};
 
-export const getApi = async (type: string ): Promise<ApiResponse> => {
-  
-  
-    try {
-      if (type === '') {
-        const response = await axios.get<ApiResponse>(api + 'format' + '&limit=10' );
-        return response.data;
-      }
-      const response = await axios.get<ApiResponse>(api + type + '&limit=10' );
-      
-      switch (type) {
-        case 'format':
-          return response.data.facets.format;
-        case 'network_name_str':
-          return response.data.facets.network_name_str;
-        case 'language':
-          return response.data.facets.language;
-        default:
-          return response.data
-      }
-      
-    } catch (error) {
-      console.error(error);
-      throw new Error("Error fetching API data");
-    }
+export const fetchFormats = async (): Promise<FacetItem[]> => {
+  const data = await get("format");
+  return data.facets.format ?? [];
+};
 
+export const fetchNetworks = async (): Promise<FacetItem[]> => {
+  const data = await get("network_name_str");
+  return data.facets.network_name_str ?? [];
+};
+
+export const fetchLanguages = async (): Promise<{ items: FacetItem[]; resultCount: number }> => {
+  const data = await get("language");
+  return {
+    items: data.facets.language ?? [],
+    resultCount: data.resultCount,
+  };
 };

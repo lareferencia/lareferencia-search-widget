@@ -2,90 +2,76 @@ import { Box } from "@chakra-ui/react";
 import * as echarts from "echarts";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "../../../hooks/useTranslation";
+import { FacetItem } from "../../../interfaces/api-response";
 
-//interface for data coming as props
 interface PieChartProps {
-  data: any;
+  data: FacetItem[];
 }
 
-export const PieChart : React.FC<PieChartProps> = ({ data }) => {
+export const PieChart: React.FC<PieChartProps> = ({ data }) => {
   const { t } = useTranslation();
-
-  
   const chartRef = useRef<HTMLDivElement>(null);
 
-  
   useEffect(() => {
+    if (!chartRef.current) return;
 
-    
-    const myChart = echarts.init(chartRef.current);
+    const chart = echarts.init(chartRef.current);
 
-    // clean Format
-    const formatClean = data.map(item => ({ value: item.count, name: item.value }))
+    const formatClean = data.map((item) => ({ value: item.count, name: item.value }));
 
-    if (chartRef.current) {
-      const option = {
-        tooltip: {
-          show: false,
-        },
-        legend: {
-          show: false,
-        },
-        color: ['#365F5F', '#4E8B89', '#76BFBE', '#8DCAC9' , '#A0D3D2' ], // Gama de colores personalizada
-
-        series: [
-          {
-            name: 'Access From',
-            type: 'pie',
-            radius: ['55%', '90%'],
-
-            avoidLabelOverlap: false,
-            padAngle: 1,
-
-            itemStyle: {
-              borderRadius: 10
-            },
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: { show: false },
+      legend: { show: false },
+      color: ['#365F5F', '#4E8B89', '#76BFBE', '#8DCAC9', '#A0D3D2'],
+      series: [
+        {
+          name: 'Distribution',
+          type: 'pie',
+          radius: ['55%', '90%'],
+          avoidLabelOverlap: false,
+          padAngle: 1,
+          itemStyle: { borderRadius: 10 },
+          label: {
+            show: true,
+            position: 'center',
+            color: 'white',
+            fontSize: 12,
+            fontWeight: 'bold',
+            formatter: (params: { name: string; percent: number }) =>
+              `${t(params.name)}\n\n(${params.percent}%)`,
+          },
+          emphasis: {
             label: {
               show: true,
-              position: 'center',
-              color: 'black',
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: 'bold',
-              formatter: function(params: any) {
-                const percentage = params.percent;
-                return `${t(params.name)}\n\n(${percentage}%)`;
-              }
+              color: 'white',
+              backgroundColor: 'rgba(71,143,141,0.7)',
+              padding: 6,
+              borderRadius: 8,
+              formatter: (params: { name: string; percent: number }) =>
+                `${t(params.name)}\n\n(${params.percent}%)`,
             },
-            emphasis: {
-              label: {
-                show: true,
-                fontSize: 13,
-                fontWeight: 'bold',
-                color: 'black',
-                backgroundColor: '#7FC7BD',
-                padding: 6,
-                borderRadius: 8,
-                formatter: function(params: any) {
-                  const percentage = params.percent;
-                  return `${t(params.name)}\n\n(${percentage}%)`;
-                }
-              }
-            },
-            labelLine: {
-              show: false
-            },
-            data: formatClean
-          }
-        ]
-      };
+          },
+          labelLine: { show: false },
+          data: formatClean,
+        },
+      ],
+    });
 
-      option && myChart.setOption(option);
-    }
+    const ro = new ResizeObserver(() => chart.resize());
+    ro.observe(chartRef.current);
+
+    return () => {
+      ro.disconnect();
+      chart.dispose();
+    };
   }, [data]);
 
   return (
     <Box height="100%">
-      <Box id="pie-chart" ref={chartRef} height="100%"></Box>
+      <Box ref={chartRef} height="100%" />
     </Box>
   );
 };

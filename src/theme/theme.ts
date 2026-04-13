@@ -9,8 +9,6 @@ const brandPrimary = defineStyle({
     color: 'white',
     fontWeight: 'semibold',
     border:'none',
-
-    // let's also provide dark mode alternatives
     _dark: {
         background: 'orange.300',
         color: 'orange.800',
@@ -21,15 +19,11 @@ const brandSecondary = defineStyle({
     color: 'rgb(53, 88, 87)',
     fontWeight: 'semibold',
     border: '2px solid #F1686A',
-  
-    // let's also provide dark mode alternatives
     _dark: {
       background: 'orange.300',
       color: 'orange.800',
     }
 })
-
-
 
 const buttonTheme = defineStyleConfig({
     variants: { brandPrimary, brandSecondary },
@@ -38,39 +32,38 @@ const buttonTheme = defineStyleConfig({
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(tabsAnatomy.keys)
 
-// define the base component styles
 const baseStyle = definePartsStyle({
-  // define the part you're going to style
   tab: {
-    fontWeight: 'semibold', // change the font weight
+    fontWeight: 'semibold',
   },
   tabpanel:{
     padding: '0',
   }
 })
 
-// export the component theme
-
 const colorfulVariant = definePartsStyle(() => {
-  
     return {
       tab: {
         border: 'none',
         backgroundColor: 'transparent',
-        borderBottom: '3px solid #b4e2dc',
+        borderBottom: '2px solid rgba(255,255,255,0.25)',
         fontWeight: 'bold',
-        color: '#355857',
+        color: 'rgba(255,255,255,0.7)',
+        fontSize: '13px',
         _selected: {
-          borderBottom: '3px solid #68b9b7',
+          borderBottom: '2px solid rgba(255,255,255,0.9)',
+          color: 'white',
         },
         _hover: {
-          bgColor: 'transparent'
+          bgColor: 'rgba(255,255,255,0.05)',
+          color: 'white',
         },
         _focus: {
           bgColor: 'transparent'
         }
       },
       tablist: {
+        borderBottom: 'none',
       },
       tabpanel: {
         borderBottomRadius: 'lg',
@@ -82,8 +75,6 @@ const colorfulVariant = definePartsStyle(() => {
   const variants = {
     colorful: colorfulVariant,
   }
-  
-
 
 const tabsTheme = defineMultiStyleConfig({ baseStyle, variants })
 
@@ -91,6 +82,27 @@ export const theme = extendTheme({
     components: { Button: buttonTheme, Tabs: tabsTheme },
     fonts:{
       body: `'Titillium-Web', sans-serif`,
-    }
+    },
+    colors: {
+      glass: {
+        bg: 'rgba(255, 255, 255, 0.08)',
+        border: 'rgba(255, 255, 255, 0.18)',
+        divider: 'rgba(255, 255, 255, 0.15)',
+        textPrimary: 'rgba(255, 255, 255, 0.95)',
+        textSecondary: 'rgba(255, 255, 255, 0.65)',
+        countColor: 'rgba(255, 255, 255, 0.9)',
+      },
+    },
+    layerStyles: {
+      glassmorphism: {
+        bg: 'rgba(255, 255, 255, 0.08)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255, 255, 255, 0.18)',
+        borderRadius: '30px',
+      },
+      glassPanel: {
+        borderColor: 'rgba(255, 255, 255, 0.12)',
+      },
+    },
 })
-

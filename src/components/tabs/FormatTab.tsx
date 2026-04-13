@@ -1,32 +1,16 @@
-import { Box, TabPanel } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { ListFormats } from "./ui/list/ListFormats";
-import { useEffect, useState } from "react";
-import { getApi } from "../../api/api";
+import { FacetItem } from "../../interfaces/api-response";
 
+interface FormatTabProps {
+  data?: FacetItem[];
+}
 
-const FormatTab = () => {
-
-  const [data, setData] = useState();
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      const response = await getApi("format");
-      setData(response);
-    }
-    fetchData();
-
-
-  }, [])
-
-
-
+const FormatTab = ({ data }: FormatTabProps) => {
   return (
-
-    <Box p="1" >
+    <Box p="1">
       <ListFormats format={data} />
     </Box>
-
   );
 };
 

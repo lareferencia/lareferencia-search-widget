@@ -1,129 +1,78 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { GeneralData } from "./GeneralData";
-
 import { PieLoading } from "./ui/PieLoading";
 import { PieChart } from "./charts/PieChart";
-import React, { Suspense, useEffect, useState } from "react";
-import { getApi } from "../../api/api";
+import React, { Suspense, useState } from "react";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useWidgetData } from "../../hooks/useWidgetData";
+import { FacetItem } from "../../interfaces/api-response";
 
 const FormatTab = React.lazy(() => import("./FormatTab"));
 const CountryTab = React.lazy(() => import("./CountryTab"));
 const LanguageTab = React.lazy(() => import("./LanguageTab"));
 
 export const TabsContainer = () => {
-  // hook for api response
-  const [data, setData] = useState();
-  const [tabIndex, setTabIndex] = useState(0)
+  const [tabIndex, setTabIndex] = useState(0);
   const { t } = useTranslation();
+  const { data, loading } = useWidgetData();
 
-
-  const fetchData = async () => {
-    let param: string = "";
-    switch (tabIndex) {
-      case 0:
-        param = "format";
-        break;
-      case 1:
-        param = "network_name_str";
-        break;
-      case 2:
-        param = "language";
-        break;
-      default:
-        break;
-    }
-
-    try {
-      const response = await getApi(param);
-      setData(response);
-    } catch (error) {
-      console.log(error);
-
-    }
-
-  };
-
-  useEffect(() => {
-    fetchData();
-
-
-  }, [tabIndex])
-
-
-
+  const pieData: FacetItem[] | undefined = data
+    ? [data.formats, data.networks, data.languages][tabIndex]
+    : undefined;
 
   return (
-    <>
-      {/* PANELS */}
+    <Box layerStyle="glassmorphism" overflow="hidden">
+
+      {/* ── TOP: Tabs full width ── */}
+      <Box borderBottom="1px solid rgba(255,255,255,0.1)">
+        <Tabs variant="colorful" onChange={(i) => setTabIndex(i)}>
+          <TabList px={4} gap={1}>
+            <Tab pb={3} pt={3}>{t('typeOfDocument')}</Tab>
+            <Tab pb={3} pt={3}>{t('country')}</Tab>
+            <Tab pb={3} pt={3}>{t('language')}</Tab>
+          </TabList>
+
+          <TabPanels>
+            <TabPanel p={4} pt={3}>
+              <Suspense>
+                <FormatTab data={data?.formats} />
+              </Suspense>
+            </TabPanel>
+            <TabPanel p={4} pt={3}>
+              <Suspense>
+                <CountryTab data={data?.networks} />
+              </Suspense>
+            </TabPanel>
+            <TabPanel p={4} pt={3}>
+              <Suspense>
+                <LanguageTab data={data?.languages} />
+              </Suspense>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
+
+      {/* ── BOTTOM ROW: Stats + Chart ── */}
       <Box
-        display="flex"
-        flexDir={{ base: 'column', lg: 'row' }}
-        h={{ base: 'auto', lg: '250px' }}
-        border='1px solid white'
-        borderRadius='30px'
-        overflow="hidden"
+        display="grid"
+        gridTemplateColumns={{ base: '1fr', lg: '1fr 2fr' }}
+        minH="140px"
       >
-        {/* General data */}
-        <GeneralData />
-
-        <Box
-          w={{ base: '100%', lg: '66.66%' }}
-          borderLeft={{ base: 'none', lg: '1px solid white' }}
-          borderRight={{ base: 'none', lg: '1px solid white' }}
-          borderTop={{ base: '1px solid white', lg: 'none' }}
-          borderBottom={{ base: '1px solid white', lg: 'none' }}
-        >
-
-          <Tabs variant="colorful" onChange={(i) => setTabIndex(i)} h='100%'>
-            <TabList display="flex" w="100%">
-              <Tab flex={1} style={{ color: 'white' }}>{t('typeOfDocument')}</Tab>
-              <Tab flex={1} style={{ color: 'white' }}>{t('country')}</Tab>
-              <Tab flex={1} style={{ color: 'white' }} >{t('language')}</Tab>
-            </TabList>
-
-            <TabPanels display='flex' flexDir='column' justifyContent='center' h='calc(100% - 35px)'>
-              <TabPanel padding={0}>
-                {tabIndex === 0 && (
-                  <Suspense >
-                    <FormatTab />
-                  </Suspense>
-                )}
-              </TabPanel>
-
-              <TabPanel>
-                {tabIndex === 1 && (
-                  <Suspense >
-                    <CountryTab />
-                  </Suspense>
-                )}
-              </TabPanel>
-
-              <TabPanel>
-                {tabIndex === 2 && (
-                  <Suspense >
-                    <LanguageTab />
-                  </Suspense>
-                )}
-              </TabPanel>
-
-            </TabPanels>
-          </Tabs>
-
+        {/* Stats */}
+        <Box borderRight={{ base: 'none', lg: '1px solid rgba(255,255,255,0.1)' }}
+             borderTop={{ base: '1px solid rgba(255,255,255,0.1)', lg: 'none' }}>
+          <GeneralData resultCount={data?.resultCount} loading={loading} />
         </Box>
 
-
+        {/* Pie chart */}
         <Box
-          w={{ base: '100%', lg: '33.33%' }}
-          h={{ base: '250px', lg: 'auto' }}
-          p={{ base: 4, lg: 0 }}
+          h={{ base: '200px', lg: '160px' }}
+          borderTop={{ base: '1px solid rgba(255,255,255,0.1)', lg: 'none' }}
         >
-          {data ? <PieChart data={data} /> : <PieLoading />}
+          {pieData ? <PieChart data={pieData} /> : <PieLoading />}
         </Box>
+      </Box>
 
-      </Box >
-    </>
+    </Box>
   );
 };
-
-

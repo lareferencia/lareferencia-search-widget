@@ -1,19 +1,12 @@
 import { Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { getApi } from "../../api/api";
 import { ListFormats } from "./ui/list/ListFormats";
+import { FacetItem } from "../../interfaces/api-response";
 
-const LanguageTab = () => {
-  const [data, setData] = useState();
+interface LanguageTabProps {
+  data?: FacetItem[];
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getApi("language");
-      setData(response);
-    };
-    fetchData();
-  }, []);
-
+const LanguageTab = ({ data }: LanguageTabProps) => {
   return (
     <Box p="1">
       <ListFormats format={data?.slice(0, 6)} />
