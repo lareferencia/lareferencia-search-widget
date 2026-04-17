@@ -9,24 +9,33 @@ interface GeneralDataProps {
 export const GeneralData = ({ resultCount, loading }: GeneralDataProps) => {
   const { t } = useTranslation();
 
+  const items = [
+    { value: "12", label: t('nationalNodes') },
+    { value: loading ? null : (resultCount?.toLocaleString() ?? '—'), label: t('documents'), loading },
+  ];
+
   return (
     <Box
       display="flex"
-      flexDir="column"
-      justifyContent="center"
-      gap={5}
-      p={5}
+      flexDir="row"
+      gap={0}
       h="100%"
     >
-      <StatItem
-        value="12"
-        label={t('nationalNodes')}
-      />
-      <StatItem
-        value={loading ? null : (resultCount?.toLocaleString() ?? '—')}
-        label={t('documents')}
-        loading={loading}
-      />
+      {items.map((item, i) => (
+        <Box
+          key={item.label}
+          flex="1"
+          px={4}
+          py={3}
+          borderRight={i < items.length - 1 ? "1px solid rgba(255,255,255,0.12)" : undefined}
+        >
+          <StatItem
+            value={item.value ?? null}
+            label={item.label}
+            loading={item.loading}
+          />
+        </Box>
+      ))}
     </Box>
   );
 };
@@ -43,7 +52,7 @@ const StatItem = ({ value, label, loading }: StatItemProps) => (
       <Skeleton h="32px" w="90px" mb={1} startColor="whiteAlpha.200" endColor="whiteAlpha.100" borderRadius="md" />
     ) : (
       <Text
-        fontSize="2xl"
+        fontSize="3xl"
         fontWeight="800"
         color="white"
         lineHeight="1"
@@ -55,9 +64,9 @@ const StatItem = ({ value, label, loading }: StatItemProps) => (
     <Text
       fontSize="11px"
       fontWeight="600"
-      color="rgba(255,255,255,0.5)"
+      color="rgba(255,255,255,0.55)"
       textTransform="uppercase"
-      letterSpacing="0.08em"
+      letterSpacing="0.1em"
       mt="4px"
     >
       {label}

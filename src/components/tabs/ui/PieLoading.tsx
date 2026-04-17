@@ -9,7 +9,7 @@ export const PieLoading = () => {
       h="100%"
       p="5px"
     >
-      <SkeletonCircle size="200" />
+      <SkeletonCircle size="120" />
     </Box>
   );
 };

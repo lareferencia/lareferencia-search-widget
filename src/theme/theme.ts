@@ -101,6 +101,13 @@ export const theme = extendTheme({
         border: '1px solid rgba(255, 255, 255, 0.18)',
         borderRadius: '30px',
       },
+      glassmorphismHero: {
+        bg: 'rgba(13, 41, 63, 0.45)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        border: '1px solid rgba(255, 255, 255, 0.12)',
+        borderRadius: '20px',
+      },
       glassPanel: {
         borderColor: 'rgba(255, 255, 255, 0.12)',
       },

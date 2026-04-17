@@ -10,7 +10,7 @@ type Props = {
 
 export const ListFormats = ({ format, columnsBase = 1 }: Props) => {
   const maxCount = format ? Math.max(...format.map((i) => i.count)) : 1;
-  const columns = format ? Math.min(Math.ceil(format.length / 4), 3) : 1;
+  const columns = format ? Math.min(Math.ceil(format.length / 4), 2) : 1;
 
   return (
     <SimpleGrid

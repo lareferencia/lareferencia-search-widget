@@ -21,10 +21,15 @@ export const TabsContainer = () => {
     : undefined;
 
   return (
-    <Box layerStyle="glassmorphism" overflow="hidden">
+    <Box layerStyle="glassmorphismHero" overflow="hidden">
 
-      {/* ── TOP: Tabs full width ── */}
-      <Box borderBottom="1px solid rgba(255,255,255,0.1)">
+      {/* ── TOP: GeneralData ── */}
+      <Box borderBottom="1px solid rgba(255,255,255,0.10)">
+        <GeneralData resultCount={data?.resultCount} loading={loading} />
+      </Box>
+
+      {/* ── MIDDLE: Tabs ── */}
+      <Box borderBottom="1px solid rgba(255,255,255,0.10)">
         <Tabs variant="colorful" onChange={(i) => setTabIndex(i)}>
           <TabList px={4} gap={1}>
             <Tab pb={3} pt={3}>{t('typeOfDocument')}</Tab>
@@ -52,25 +57,9 @@ export const TabsContainer = () => {
         </Tabs>
       </Box>
 
-      {/* ── BOTTOM ROW: Stats + Chart ── */}
-      <Box
-        display="grid"
-        gridTemplateColumns={{ base: '1fr', lg: '1fr 2fr' }}
-        minH="140px"
-      >
-        {/* Stats */}
-        <Box borderRight={{ base: 'none', lg: '1px solid rgba(255,255,255,0.1)' }}
-             borderTop={{ base: '1px solid rgba(255,255,255,0.1)', lg: 'none' }}>
-          <GeneralData resultCount={data?.resultCount} loading={loading} />
-        </Box>
-
-        {/* Pie chart */}
-        <Box
-          h={{ base: '200px', lg: '160px' }}
-          borderTop={{ base: '1px solid rgba(255,255,255,0.1)', lg: 'none' }}
-        >
-          {pieData ? <PieChart data={pieData} /> : <PieLoading />}
-        </Box>
+      {/* ── BOTTOM: Pie Chart ── */}
+      <Box borderTop="1px solid rgba(255,255,255,0.10)" h="200px">
+        {pieData ? <PieChart data={pieData} /> : <PieLoading />}
       </Box>
 
     </Box>
