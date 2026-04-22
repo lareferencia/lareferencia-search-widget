@@ -1,7 +1,7 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { GeneralData } from "./GeneralData";
 import { PieLoading } from "./ui/PieLoading";
-import { PieChart } from "./charts/PieChart";
+import { BarChart } from "./charts/BarChart";
 import React, { Suspense, useState } from "react";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useWidgetData } from "../../hooks/useWidgetData";
@@ -57,9 +57,9 @@ export const TabsContainer = () => {
         </Tabs>
       </Box>
 
-      {/* ── BOTTOM: Pie Chart ── */}
+      {/* ── BOTTOM: Bar Chart ── */}
       <Box borderTop="1px solid rgba(255,255,255,0.10)" h="200px">
-        {pieData ? <PieChart data={pieData} /> : <PieLoading />}
+        {pieData ? <BarChart data={pieData} /> : <PieLoading />}
       </Box>
 
     </Box>
