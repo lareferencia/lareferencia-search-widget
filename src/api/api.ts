@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ApiResponse, FacetItem } from "../interfaces/api-response";
 
-const BASE = "https://www.lareferencia.info/vufind/api/v1/search?type=AllFields&lang=en&facet[]=";
+const BASE = "https://buscador.lareferencia.info/api/v1/search?type=AllFields&lang=en&facet[]=";
 
 const get = async (facet: string): Promise<ApiResponse> => {
   const response = await axios.get<ApiResponse>(`${BASE}${facet}&limit=10`);
