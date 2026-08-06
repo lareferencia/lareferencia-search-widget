@@ -3,14 +3,15 @@ import { useTranslation } from "../../hooks/useTranslation";
 
 interface GeneralDataProps {
   resultCount?: number;
+  networkCount?: number;
   loading: boolean;
 }
 
-export const GeneralData = ({ resultCount, loading }: GeneralDataProps) => {
+export const GeneralData = ({ resultCount, networkCount, loading }: GeneralDataProps) => {
   const { t } = useTranslation();
 
   const items = [
-    { value: "12", label: t('nationalNodes') },
+    { value: loading ? null : (networkCount?.toString() ?? '—'), label: t('nationalNodes'), loading },
     { value: loading ? null : (resultCount?.toLocaleString() ?? '—'), label: t('documents'), loading },
   ];
 

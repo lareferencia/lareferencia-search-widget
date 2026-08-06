@@ -25,7 +25,7 @@ export const TabsContainer = () => {
 
       {/* ── TOP: GeneralData ── */}
       <Box borderBottom="1px solid rgba(255,255,255,0.10)">
-        <GeneralData resultCount={data?.resultCount} loading={loading} />
+        <GeneralData resultCount={data?.resultCount} networkCount={data?.networks?.length} loading={loading} />
       </Box>
 
       {/* ── MIDDLE: Tabs ── */}

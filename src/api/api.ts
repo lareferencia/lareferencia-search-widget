@@ -5,6 +5,7 @@ const BASE = "https://buscador.lareferencia.info/api/v1/search?type=AllFields&la
 
 const get = async (facet: string): Promise<ApiResponse> => {
   const response = await axios.get<ApiResponse>(`${BASE}${facet}&limit=10`);
+  
   return response.data;
 };
 
