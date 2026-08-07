@@ -38,10 +38,10 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
         },
       },
       grid: {
-        left: "3%",
-        right: "3%",
-        bottom: "5%",
-        top: "20%",
+        left: "2%",
+        right: "2%",
+        bottom: "3%",
+        top: "15%",
         containLabel: true,
       },
       xAxis: {

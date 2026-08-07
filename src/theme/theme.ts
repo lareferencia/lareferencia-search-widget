@@ -71,9 +71,46 @@ const colorfulVariant = definePartsStyle(() => {
       },
     }
   })
+
+const pillVariant = definePartsStyle(() => {
+    return {
+      tab: {
+        border: 'none',
+        backgroundColor: 'rgba(255,255,255,0.07)',
+        borderRadius: '20px',
+        fontWeight: '600',
+        color: 'rgba(255,255,255,0.60)',
+        fontSize: '11px',
+        px: '10px',
+        py: '4px',
+        minH: 'unset',
+        h: 'auto',
+        _selected: {
+          backgroundColor: 'rgba(255,255,255,0.18)',
+          color: 'white',
+        },
+        _hover: {
+          backgroundColor: 'rgba(255,255,255,0.12)',
+          color: 'rgba(255,255,255,0.85)',
+        },
+        _focus: {
+          boxShadow: 'none',
+        }
+      },
+      tablist: {
+        borderBottom: 'none',
+        gap: '4px',
+        flexWrap: 'wrap',
+      },
+      tabpanel: {
+        padding: '0',
+      },
+    }
+  })
   
   const variants = {
     colorful: colorfulVariant,
+    pill: pillVariant,
   }
 
 const tabsTheme = defineMultiStyleConfig({ baseStyle, variants })

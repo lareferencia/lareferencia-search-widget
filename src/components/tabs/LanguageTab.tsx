@@ -8,7 +8,7 @@ interface LanguageTabProps {
 
 const LanguageTab = ({ data }: LanguageTabProps) => {
   return (
-    <Box p="1">
+    <Box p="0">
       <ListFormats format={data?.slice(0, 6)} />
     </Box>
   );

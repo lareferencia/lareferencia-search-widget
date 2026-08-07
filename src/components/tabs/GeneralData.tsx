@@ -11,8 +11,8 @@ export const GeneralData = ({ resultCount, networkCount, loading }: GeneralDataP
   const { t } = useTranslation();
 
   const items = [
-    { value: loading ? null : (networkCount?.toString() ?? '—'), label: t('nationalNodes'), loading },
     { value: loading ? null : (resultCount?.toLocaleString() ?? '—'), label: t('documents'), loading },
+    { value: loading ? null : (networkCount?.toString() ?? '—'), label: t('nationalNodes'), loading },
   ];
 
   return (
@@ -27,8 +27,11 @@ export const GeneralData = ({ resultCount, networkCount, loading }: GeneralDataP
           key={item.label}
           flex="1"
           px={4}
-          py={3}
-          borderRight={i < items.length - 1 ? "1px solid rgba(255,255,255,0.12)" : undefined}
+          py={2}
+          borderRight={i < items.length - 1 ? "1px solid rgba(255,255,255,0.10)" : undefined}
+          display="flex"
+          alignItems="center"
+          gap={2}
         >
           <StatItem
             value={item.value ?? null}
@@ -50,10 +53,10 @@ interface StatItemProps {
 const StatItem = ({ value, label, loading }: StatItemProps) => (
   <Box>
     {loading ? (
-      <Skeleton h="32px" w="90px" mb={1} startColor="whiteAlpha.200" endColor="whiteAlpha.100" borderRadius="md" />
+      <Skeleton h="22px" w="70px" mb="2px" startColor="whiteAlpha.200" endColor="whiteAlpha.100" borderRadius="md" />
     ) : (
       <Text
-        fontSize="3xl"
+        fontSize="xl"
         fontWeight="800"
         color="white"
         lineHeight="1"
@@ -63,12 +66,12 @@ const StatItem = ({ value, label, loading }: StatItemProps) => (
       </Text>
     )}
     <Text
-      fontSize="11px"
+      fontSize="10px"
       fontWeight="600"
-      color="rgba(255,255,255,0.55)"
+      color="rgba(255,255,255,0.50)"
       textTransform="uppercase"
-      letterSpacing="0.1em"
-      mt="4px"
+      letterSpacing="0.08em"
+      mt="2px"
     >
       {label}
     </Text>

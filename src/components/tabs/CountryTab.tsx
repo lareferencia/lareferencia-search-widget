@@ -8,7 +8,7 @@ interface CountryTabProps {
 
 const CountryTab = ({ data }: CountryTabProps) => {
   return (
-    <Box p="1">
+    <Box p="0">
       <ListFormats format={data} columnsBase={2} />
     </Box>
   );

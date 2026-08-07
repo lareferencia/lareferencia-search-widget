@@ -8,7 +8,7 @@ interface FormatTabProps {
 
 const FormatTab = ({ data }: FormatTabProps) => {
   return (
-    <Box p="1">
+    <Box p="0">
       <ListFormats format={data} />
     </Box>
   );

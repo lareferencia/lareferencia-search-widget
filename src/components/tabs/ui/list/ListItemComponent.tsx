@@ -15,19 +15,19 @@ export const ListItemComponent = ({ item, maxCount }: ListItemComponentProps) =>
   const pct = maxCount > 0 ? (item.count / maxCount) * 100 : 0;
 
   return (
-    <Box as="li" listStyleType="none" py="3px">
+    <Box as="li" listStyleType="none" py="2px">
       {/* Label + count */}
-      <Box display="flex" justifyContent="space-between" alignItems="baseline" mb="4px">
-        <Text fontSize="12px" fontWeight="600" color="rgba(255,255,255,0.75)" noOfLines={1}>
+      <Box display="flex" justifyContent="space-between" alignItems="baseline" mb="3px">
+        <Text fontSize="11px" fontWeight="600" color="rgba(255,255,255,0.75)" noOfLines={1}>
           {capitalizeFirstLetter(t(item.value))}
         </Text>
-        <Text fontSize="11px" fontWeight="700" color="rgba(255,255,255,0.55)" ml={2} flexShrink={0}>
+        <Text fontSize="10px" fontWeight="700" color="rgba(255,255,255,0.50)" ml={2} flexShrink={0}>
           {item.count.toLocaleString()}
         </Text>
       </Box>
 
       {/* Progress bar */}
-      <Box h="3px" bg="rgba(255,255,255,0.08)" borderRadius="full" overflow="hidden">
+      <Box h="2px" bg="rgba(255,255,255,0.08)" borderRadius="full" overflow="hidden">
         <Box
           h="100%"
           w={`${pct}%`}

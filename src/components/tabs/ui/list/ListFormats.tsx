@@ -16,7 +16,7 @@ export const ListFormats = ({ format, columnsBase = 1 }: Props) => {
     <SimpleGrid
       as="ul"
       columns={{ base: columnsBase, md: 2, lg: columns }}
-      spacingX={6}
+      spacingX={4}
       spacingY={0}
       p={0}
       m={0}
