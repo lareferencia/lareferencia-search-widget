@@ -41,16 +41,15 @@ export const TabsContainer = () => {
           </TabList>
 
           {/* Stats compactas */}
-          <Box display="flex" gap={0} flexShrink={0}>
-            <StatChip
-              value={data?.resultCount?.toLocaleString()}
-              label={t('documents')}
-              loading={loading}
-              borderRight="1px solid rgba(255,255,255,0.12)"
-            />
+          <Box display="flex" gap={2} flexShrink={0}>
             <StatChip
               value={data?.networks?.length?.toString()}
               label={t('nationalNodes')}
+              loading={loading}
+            />
+            <StatChip
+              value={data?.resultCount?.toLocaleString()}
+              label={t('documents')}
               loading={loading}
             />
           </Box>
@@ -88,15 +87,20 @@ interface StatChipProps {
   value?: string;
   label: string;
   loading: boolean;
-  borderRight?: string;
 }
 
-const StatChip = ({ value, label, loading, borderRight }: StatChipProps) => (
+const StatChip = ({ value, label, loading }: StatChipProps) => (
   <Box
     px={3}
-    py={1}
+    py="6px"
     textAlign="center"
-    borderRight={borderRight}
+    borderRadius="10px"
+    bg="rgba(0, 20, 40, 0.55)"
+    backdropFilter="blur(8px)"
+    WebkitBackdropFilter="blur(8px)"
+    border="1px solid rgba(255,255,255,0.14)"
+    boxShadow="inset 0 1px 0 rgba(255,255,255,0.18), 0 2px 8px rgba(0,0,0,0.3)"
+    minW="70px"
   >
     {loading ? (
       <Skeleton h="16px" w="50px" mb="2px" startColor="whiteAlpha.200" endColor="whiteAlpha.100" borderRadius="md" />
