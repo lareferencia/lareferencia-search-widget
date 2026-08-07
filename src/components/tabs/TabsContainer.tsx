@@ -1,29 +1,25 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Skeleton } from "@chakra-ui/react";
-import { PieLoading } from "./ui/PieLoading";
-import { BarChart } from "./charts/BarChart";
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useWidgetData } from "../../hooks/useWidgetData";
-import { FacetItem } from "../../interfaces/api-response";
 
 const FormatTab = React.lazy(() => import("./FormatTab"));
 const CountryTab = React.lazy(() => import("./CountryTab"));
 const LanguageTab = React.lazy(() => import("./LanguageTab"));
 
-export const TabsContainer = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+interface TabsContainerProps {
+  onTabChange: (index: number) => void;
+}
+
+export const TabsContainer = ({ onTabChange }: TabsContainerProps) => {
   const { t } = useTranslation();
   const { data, loading } = useWidgetData();
 
-  const pieData: FacetItem[] | undefined = data
-    ? [data.formats, data.networks, data.languages][tabIndex]
-    : undefined;
-
   return (
-    <Box layerStyle="glassmorphismHero" overflow="hidden">
+    <Box layerStyle="glassmorphismHero" overflow="hidden" flex="1 1 0" minW={0}>
 
-      {/* ── HEADER: Pills (izq) + Stats (der) en una sola fila ── */}
-      <Tabs variant="pill" onChange={(i) => setTabIndex(i)}>
+      {/* ── HEADER: Stats (izq) + Pills (der) en una sola fila ── */}
+      <Tabs variant="pill" onChange={onTabChange}>
         <Box
           borderBottom="1px solid rgba(255,255,255,0.10)"
           px={3}
@@ -73,11 +69,6 @@ export const TabsContainer = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-
-      {/* ── BOTTOM: Bar Chart ── */}
-      <Box borderTop="1px solid rgba(255,255,255,0.10)" h="150px">
-        {pieData ? <BarChart data={pieData} /> : <PieLoading />}
-      </Box>
 
     </Box>
   );

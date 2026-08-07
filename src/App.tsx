@@ -1,13 +1,22 @@
 import { Box } from "@chakra-ui/react";
-import { SearchContainer } from "./components/search/SearchContainer";
+import { useState } from "react";
 import { TabsContainer } from "./components/tabs/TabsContainer";
+import { PieChartPanel } from "./components/tabs/PieChartPanel";
+import { useWidgetData } from "./hooks/useWidgetData";
+import { FacetItem } from "./interfaces/api-response";
 
 function App() {
-  return (
-    <Box >
-      {/* <SearchContainer /> */}
+  const [tabIndex, setTabIndex] = useState(0);
+  const { data } = useWidgetData();
 
-      <TabsContainer />
+  const pieData: FacetItem[] | undefined = data
+    ? [data.formats, data.networks, data.languages][tabIndex]
+    : undefined;
+
+  return (
+    <Box display="flex" gap={3} alignItems="stretch">
+      <TabsContainer onTabChange={setTabIndex} />
+      <PieChartPanel data={pieData} />
     </Box>
   );
 }
