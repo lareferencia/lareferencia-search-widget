@@ -33,13 +33,6 @@ export const TabsContainer = () => {
           justifyContent="space-between"
           gap={2}
         >
-          {/* Pills de navegación */}
-          <TabList gap={1} flexShrink={0}>
-            <Tab>{t('typeOfDocument')}</Tab>
-            <Tab>{t('country')}</Tab>
-            <Tab>{t('language')}</Tab>
-          </TabList>
-
           {/* Stats compactas */}
           <Box display="flex" gap={2} flexShrink={0}>
             <StatChip
@@ -53,6 +46,13 @@ export const TabsContainer = () => {
               loading={loading}
             />
           </Box>
+
+          {/* Pills de navegación */}
+          <TabList gap={1} flexShrink={0}>
+            <Tab>{t('typeOfDocument')}</Tab>
+            <Tab>{t('country')}</Tab>
+            <Tab>{t('language')}</Tab>
+          </TabList>
         </Box>
 
         <TabPanels>
@@ -95,11 +95,11 @@ const StatChip = ({ value, label, loading }: StatChipProps) => (
     py="6px"
     textAlign="center"
     borderRadius="10px"
-    bg="rgba(0, 20, 40, 0.55)"
+    bg="rgba(255,255,255,0.18)"
     backdropFilter="blur(8px)"
     WebkitBackdropFilter="blur(8px)"
-    border="1px solid rgba(255,255,255,0.14)"
-    boxShadow="inset 0 1px 0 rgba(255,255,255,0.18), 0 2px 8px rgba(0,0,0,0.3)"
+    border="1px solid rgba(255,255,255,0.22)"
+    boxShadow="inset 0 1px 0 rgba(255,255,255,0.28), 0 2px 6px rgba(0,0,0,0.2)"
     minW="70px"
   >
     {loading ? (
