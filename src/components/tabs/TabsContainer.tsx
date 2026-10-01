@@ -25,12 +25,13 @@ export const TabsContainer = ({ onTabChange }: TabsContainerProps) => {
           px={3}
           py={2}
           display="flex"
+          flexWrap="wrap"
           alignItems="center"
           justifyContent="space-between"
           gap={2}
         >
           {/* Stats compactas */}
-          <Box display="flex" gap={2} flexShrink={0}>
+          <Box display="flex" gap={2} flex="1 1 auto" flexWrap="wrap">
             <StatChip
               value={data?.networks?.length?.toString()}
               label={t('nationalNodes')}
@@ -44,10 +45,10 @@ export const TabsContainer = ({ onTabChange }: TabsContainerProps) => {
           </Box>
 
           {/* Pills de navegación */}
-          <TabList gap={1} flexShrink={0}>
-            <Tab>{t('typeOfDocument')}</Tab>
-            <Tab>{t('country')}</Tab>
-            <Tab>{t('language')}</Tab>
+          <TabList gap={1} flex="1 1 auto" flexWrap="wrap">
+            <Tab flex="1 1 auto">{t('typeOfDocument')}</Tab>
+            <Tab flex="1 1 auto">{t('country')}</Tab>
+            <Tab flex="1 1 auto">{t('language')}</Tab>
           </TabList>
         </Box>
 
@@ -88,8 +89,9 @@ const StatChip = ({ value, label, loading }: StatChipProps) => (
     borderRadius="10px"
     bg="rgba(255,255,255,0.18)"
     backdropFilter="blur(8px)"
-    WebkitBackdropFilter="blur(8px)"
+    sx={{ WebkitBackdropFilter: "blur(8px)" }}
     minW="70px"
+    flex="1 1 0"
   >
     {loading ? (
       <Skeleton h="16px" w="50px" mb="2px" startColor="whiteAlpha.200" endColor="whiteAlpha.100" borderRadius="md" />

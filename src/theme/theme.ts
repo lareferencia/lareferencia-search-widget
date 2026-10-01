@@ -118,7 +118,7 @@ const tabsTheme = defineMultiStyleConfig({ baseStyle, variants })
 export const theme = extendTheme({
     components: { Button: buttonTheme, Tabs: tabsTheme },
     fonts:{
-      body: `'Titillium-Web', sans-serif`,
+      body: `'Titillium Web', sans-serif`,
     },
     colors: {
       glass: {
