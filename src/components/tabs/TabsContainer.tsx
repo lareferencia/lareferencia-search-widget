@@ -96,7 +96,7 @@ const StatChip = ({ value, label, loading }: StatChipProps) => (
     {loading ? (
       <Skeleton h="16px" w="50px" mb="2px" startColor="whiteAlpha.200" endColor="whiteAlpha.100" borderRadius="md" />
     ) : (
-      <Text fontSize="md" fontWeight="800" color="white" lineHeight="1" letterSpacing="-0.3px">
+      <Text fontSize="md" fontWeight="600" color="white" lineHeight="1" letterSpacing="-0.3px">
         {value ?? '—'}
       </Text>
     )}

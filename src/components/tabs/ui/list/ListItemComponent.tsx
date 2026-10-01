@@ -21,7 +21,7 @@ export const ListItemComponent = ({ item, maxCount }: ListItemComponentProps) =>
         <Text fontSize="11px" fontWeight="600" color="rgba(255,255,255,0.75)" noOfLines={1}>
           {capitalizeFirstLetter(t(item.value))}
         </Text>
-        <Text fontSize="10px" fontWeight="700" color="rgba(255,255,255,0.50)" ml={2} flexShrink={0}>
+        <Text fontSize="10px" fontWeight="600" color="rgba(255,255,255,0.50)" ml={2} flexShrink={0}>
           {item.count.toLocaleString()}
         </Text>
       </Box>

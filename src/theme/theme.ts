@@ -76,7 +76,8 @@ const pillVariant = definePartsStyle(() => {
     return {
       tab: {
         border: 'none',
-        backgroundColor: 'rgba(255,255,255,0.07)',
+        backgroundColor: 'transparent',
+        border: '1px solid rgba(255,255,255,0.30)',
         borderRadius: '20px',
         fontWeight: '600',
         color: 'rgba(255,255,255,0.60)',
@@ -86,12 +87,13 @@ const pillVariant = definePartsStyle(() => {
         minH: 'unset',
         h: 'auto',
         _selected: {
-          backgroundColor: 'rgba(255,255,255,0.18)',
-          color: 'white',
+          backgroundColor: 'rgba(229,233,240,0.85)',
+          borderColor: 'rgba(229,233,240,0.85)',
+          color: '#0d2b5c',
         },
         _hover: {
           backgroundColor: 'rgba(255,255,255,0.12)',
-          color: 'rgba(255,255,255,0.85)',
+          color: 'white',
         },
         _focus: {
           boxShadow: 'none',
